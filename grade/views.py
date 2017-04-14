@@ -1,4 +1,8 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Grade
+import csv
 
 
 def index(request):
@@ -13,12 +17,16 @@ def operand(request):
     except:
         error_message = 1
         subject = ""
-        score = ""
-        full = ""
-    else:
-            information = Grade(subject=subject, score=score, full=full)
+        score = 0
+        full = 1
+    else:        
+            a = float(score)*100/float(full)
+            information = Grade(subject=subject, score=score, full=full, total=a)
             information.save()
     # user hits the Back button.
-    total = (score*100)/full
+    return render(request,"grade/detail.html",'')
+
+def show(request):
+    subject_list = Grade.objects.all()
     # Calculate balance of paylist.
-    return render(request,"grade/detail.html",{'payment_list':payment_list, 'total':total})
+    return render(request,"grade/show.html",{'subject_list':subject_list})

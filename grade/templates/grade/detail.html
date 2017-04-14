@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<center>
+<body bgcolor="#00BFFF" >
+<h2 style = "text-align: center;color:rgb(255, 255, 0);">โปรแกรมจำลองเกรด</h2>
+
+<form action="{% url 'grade:operand'%}" method="post">
+{% csrf_token %}
+
+    วิชา:
+    <input type="text" name="subject">
+    คะแนนที่ได้:
+    <input type="number" name="score" step="any" min="0">
+    คะแนนเต็ม:
+    <input type="number" name="full" step="any" min="0">
+
+    <input class="button" type="submit">
+
+</form>
+<br><a href = "{% url 'grade:show' %}">ดูผลการเรียน</a>
+<br><a href = "{% url 'grade:index' %}">กลับสู่หน้าหลัก</a>
+</form>
+</body>
+</center>
+</html>
