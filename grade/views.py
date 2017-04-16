@@ -20,7 +20,7 @@ def operand(request):
         subject = ""
         score = 0
         full = 1
-        credit = 0
+        credit = 1
     else:        
             equation = float(score)*100/float(full)
             net = ("%.2f" % round(equation,2))
@@ -51,5 +51,28 @@ def operand(request):
 
 def show(request):
     subject_list = Grade.objects.all()
+    keep_grade = ['A','B+','B','C+','C','D+','D','F']
+    keep_credit = [4,3.5,3,2.5,2,1.5,1,0]
+    grade_alp = []
+    cal_credit = []
+    tmp = 0
+    sum_credit = 0
+    for i in range(0,len(subject_list)):
+        grade_alp.append(str(subject_list[i].grade))
+        cal_credit.append(float(subject_list[i].credit))
+        sum_credit += float(subject_list[i].credit)
+        for j in range(0,len(keep_grade)):
+            if(str(subject_list[i].grade) == keep_grade[j]):
+                tmp += (subject_list[i].credit*keep_credit[j])
+    
+    gpa = 0
+    if sum_credit != 0:
+        gpa = tmp/sum_credit
+        result = ("%.2f" % round(gpa,2))
+        
+    print(grade_alp)
+    print(cal_credit)
+    print(tmp)
+    print(sum_credit)
     # Calculate balance of paylist.
-    return render(request,"grade/show.html",{'subject_list':subject_list})
+    return render(request,"grade/show.html",{'subject_list':subject_list, 'result':result})
