@@ -3,7 +3,8 @@
 <body bgcolor = pink>
 <center>
 <h2 style = "text-align: center;color:rgb(0, 0, 0);">โปรแกรมจำลองเกรด</h2>
-<center><img src="a.jpg" alt="Grade" style="width:504px;height:728px;"></center>
+{% load static %}
+<img src="{% static "grade/a.jpg" %}" alt="Grade"/><br>
 <br><a href = "{% url 'grade:operand' %}">เข้าสู่โปรแกรม</a>
 </center>
 </body>

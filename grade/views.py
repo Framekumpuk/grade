@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Grade
+import math
 import csv
 
 
@@ -24,6 +25,7 @@ def operand(request):
     else:        
             equation = float(score)*100/float(full)
             net = ("%.2f" % round(equation,2))
+            
             if float(net) < 0.0:
                 grade = 'Null'
             elif float(net) < 50.0:
@@ -44,6 +46,7 @@ def operand(request):
                 grade = 'A'
             elif float(net) > 100.0:
                 grade = 'Null'
+                
             information = Grade(subject=subject, score=score, full=full, total=net, grade=grade, credit=credit)
             information.save()
     # user hits the Back button.
@@ -52,7 +55,7 @@ def operand(request):
 def show(request):
     subject_list = Grade.objects.all()
     keep_grade = ['A','B+','B','C+','C','D+','D','F']
-    keep_credit = [4,3.5,3,2.5,2,1.5,1,0]
+    grade_keep = [4,3.5,3,2.5,2,1.5,1,0]
     grade_alp = []
     cal_credit = []
     tmp = 0
@@ -63,12 +66,12 @@ def show(request):
         sum_credit += float(subject_list[i].credit)
         for j in range(0,len(keep_grade)):
             if(str(subject_list[i].grade) == keep_grade[j]):
-                tmp += (subject_list[i].credit*keep_credit[j])
-    
+                tmp += (subject_list[i].credit*grade_keep[j])
+                
     gpa = 0
     if sum_credit != 0:
         gpa = tmp/sum_credit
-        result = ("%.2f" % round(gpa,2))
+        result = math.floor(gpa * 100) / 100
         
     print(grade_alp)
     print(cal_credit)
