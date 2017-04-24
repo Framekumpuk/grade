@@ -8,18 +8,18 @@
 {% csrf_token %}
 
     วิชา:
-    <input type="text" name="subject">
+    <input id='1' type="text" name="subject">
     คะแนนที่ได้:
-    <input type="number" name="score" step="any" min="0">
+    <input id='2' type="number" name="score" step="any" min="0">
     คะแนนเต็ม:
-    <input type="number" name="full" step="any" min="0">
+    <input id='3' type="number" name="full" step="any" min="0">
     หน่วยกิต:
-    <input type="number" name="credit" step="any" min="0">
+    <input id='4' type="number" name="credit" step="any" min="0">
 
     <input class="button" type="submit">
 
 </form>
-<br><a href = "{% url 'grade:show' %}">ดูผลการเรียน</a>
+<br><a id='5' href = "{% url 'grade:show' %}">ดูผลการเรียน</a>
 <br><a href = "{% url 'grade:index' %}">กลับสู่หน้าหลัก</a>
 </form>
 </body>
