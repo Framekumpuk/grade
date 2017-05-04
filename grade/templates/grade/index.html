@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head><link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+   body { background: pink !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+</head>
 <title>Grade Simulator</title>
 <body bgcolor = pink>
 <center>
 <h2 style = "text-align: center;color:rgb(0, 0, 0);">โปรแกรมจำลองเกรด</h2>
 {% load static %}
-<img src="{% static "grade/a.jpg" %}" alt="Grade"/><br>
-<br><a  id="0" href = "{% url 'grade:operand' %}">เข้าสู่โปรแกรม</a>
+<img src="{% static "grade/a.jpg" %}" alt="Grade"/><br><br>
+<div class="alert alert-danger" role="alert">
+  <strong>1.</strong>
+  <a href="{% url 'grade:operand' %}" class="alert-link">คลิ้กที่นี่</a>
+  เพื่อเข้าสู่โปรแกรม
+</div>
 </center>
 </body>
 </html>

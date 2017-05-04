@@ -16,38 +16,45 @@ def operand(request):
         score = request.POST['score']
         full = request.POST['full']
         credit = request.POST['credit']
+        mean = request.POST['mean']
+        sd = request.POST['sd']
+        final_score = request.POST['final_score']
+        final_full = request.POST['final_full']
     except:
         error_message = 1
         subject = ""
         score = 0
         full = 1
         credit = 1
-    else:        
-            equation = float(score)*100/float(full)
-            net = ("%.2f" % round(equation,2))
-            
+        mean = 0
+        sd = 0
+        final_score = 0
+        final_full = 1
+    else:
+            equation = (float(score)+float(final_score))*100/(float(full)+float(final_full))
+            net = ("%.2f" % round(equation,2)) 
             if float(net) < 0.0:
                 grade = 'Null'
-            elif float(net) < 50.0:
+            elif float(net) < float(mean)-(1.5*float(sd)):
                 grade = 'F'
-            elif float(net) < 55.0:
+            elif float(net) < float(mean)-float(sd):
                 grade = 'D'
-            elif float(net) < 60.0:
+            elif float(net) < float(mean)-(0.5*float(sd)):
                 grade = 'D+'
-            elif float(net) < 65.0:
+            elif float(net) < float(mean):
                 grade = 'C'
-            elif float(net) < 70.0:
+            elif float(net) < float(mean)+(0.5*float(sd)):
                 grade = 'C+'
-            elif float(net) < 75.0:
+            elif float(net) < float(mean)+(1*float(sd)):
                 grade = 'B'
-            elif float(net) < 80.0:
+            elif float(net) < float(mean)+(1.5*float(sd)):
                 grade = 'B+'
-            elif float(net) >= 80.0:
+            elif float(net) >= float(mean)+(1.5*float(sd)):
                 grade = 'A'
             elif float(net) > 100.0:
                 grade = 'Null'
                 
-            information = Grade(subject=subject, score=score, full=full, total=net, grade=grade, credit=credit)
+            information = Grade(subject=subject, score=score, full=full, total=net, grade=grade, credit=credit, mean=mean, sd=sd, final_score=final_score, final_full=final_full)
             information.save()
     # user hits the Back button.
     return render(request,"grade/detail.html",'')

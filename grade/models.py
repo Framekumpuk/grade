@@ -7,5 +7,9 @@ class Grade(models.Model):
     total = models.FloatField(default=0)
     grade = models.CharField(max_length=200)
     credit = models.FloatField(default=0)
+    mean = models.FloatField(default=0)
+    sd = models.FloatField(default=0)
+    final_score = models.FloatField(default=0)
+    final_full = models.FloatField(default=0)
     def __str__(self):
         return self.subject
