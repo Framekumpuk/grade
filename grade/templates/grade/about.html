@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+div.absolute {
+    position: absolute;
+    left: 600px;
+    width: 850px;
+    height: 120px;
+}
+   body { background: pink !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+</head>
+<title>About</title>
+<body bgcolor = pink>
+<center>
+<h2 style = "text-align: center;color:rgb(0, 0, 0);">เกี่ยวกับเรา</h2>
+{% load static %}
+<img src="{% static "grade/a.jpg" %}" alt="Grade"/><br><br>
+<div class="card">
+  <h3 class="card-header">โปรแกรมจำลองเกรด</h3>
+<p><div class="card-block">
+    <dd><h4 class="card-title">โปรแกรมของเราคือโปรแกรมที่ช่วยให้คุณสามารถคาดการณ์เกรดล่วงหน้า ว่าจะได้เกรดอะไร ตามการคาดการณ์คะแนนของคุณเอง</h4></p><br>
+</center>
+<center>
+<font size="4">
+    <p class="card-text">คุณสมบัติ<br>
+<div class="absolute" align="left">
+<ui>
+<li> สามารถกรอกคะแนนกลางภาคที่คุณได้ และคะแนนไฟนอลที่คุณคาดการณ์ เพื่อทำการคำนวณ</li>
+<li> สามารถใส่ค่าเฉลี่ย และส่วนเบี่ยงเบนมาตรฐานเพื่อเพิ่มความแม่นยำในเกรดของคุณที่จะได้มา</li>
+<li> สามารถให้ทุกวิชาที่คุณเรียนในเทอมนั้นๆ เพื่อแสดงเกรดเฉลี่ยออกมาให้คุณอีกด้วย</li>
+<li> รูปแบบการแสดงผลเป็นตาราง เหมือนใบผลการเรียน</li></ui>
+</font>
+</p>
+
+</div><br><br><br><br><br><br><br>
+   <center> <a href="{% url 'grade:operand' %}" class="btn btn-primary">เข้าสู่โปรแกรม</a>
+  
+
+</div>
+</center>
+</body>
+</html>

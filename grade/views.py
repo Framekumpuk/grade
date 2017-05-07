@@ -9,6 +9,9 @@ import csv
 def index(request):
     return render(request,"grade/index.html",'')
 
+def about(request):
+    return render(request,"grade/about.html",'')
+
 def operand(request):
     error_message = 0 
     try:
