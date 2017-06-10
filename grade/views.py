@@ -34,8 +34,8 @@ def operand(request):
         final_score = 0
         final_full = 1
     else:
-            equation = (float(score)+float(final_score))*100/(float(full)+float(final_full))
-            net = ("%.2f" % round(equation,2)) 
+            equation = (float(score)+float(final_score))*100/(float(full)+float(final_full))  # make score to 100 percent
+            net = ("%.2f" % round(equation,2))  # make decimal two position
             if float(net) < 0.0:
                 grade = 'Null'
             elif float(net) < float(mean)-(1.5*float(sd)):
@@ -70,6 +70,7 @@ def show(request):
     cal_credit = []
     tmp = 0
     sum_credit = 0
+    # this loop will pull data from database that calculate grade of that semeter
     for i in range(0,len(subject_list)):
         grade_alp.append(str(subject_list[i].grade))
         cal_credit.append(float(subject_list[i].credit))
@@ -79,6 +80,7 @@ def show(request):
                 tmp += (subject_list[i].credit*grade_keep[j])
                 
     gpa = 0
+    # calculate GPA
     if sum_credit != 0:
         gpa = tmp/sum_credit
         result = math.floor(gpa * 100) / 100
