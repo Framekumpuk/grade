@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>log in</title>
+</head>
+<body>
+    <center>
+    <h1>Log In</h1>
+    <form action="{% url 'grade:index'%}" method="post">
+        {% csrf_token %}
+        <p>Name:</p><br>
+        <input type="text" name="name"><br>
+        <p>Password:</p><br>
+        <input type="password" name="password" ><br><br>
+        <input type="submit" >
+    </form>  
+    </center>
+</body>
+</html>

@@ -5,6 +5,8 @@ from .models import Grade
 import math
 import csv
 
+def login(request):
+    return render(request,"grade/login.html",'')
 
 def index(request):
     return render(request,"grade/index.html",'')
