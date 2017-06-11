@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from .models import Grade
 import math
 import csv
@@ -9,7 +11,17 @@ def login(request):
     return render(request,"grade/login.html",'')
 
 def index(request):
-    return render(request,"grade/index.html",'')
+    user = User.objects.all()
+    name = request.POST['name']
+    password = request.POST['password']
+    user = authenticate(username=name, password=password)
+    if user is not None:
+        # A backend authenticated the credentials
+        login(request)
+        return render(request,"grade/index.html",'')
+    else:
+        # No backend authenticated the credentials
+        return render(request, 'grade/login.html', '')  
 
 def about(request):
     return render(request,"grade/about.html",'')
