@@ -1,4 +1,4 @@
 {% extends 'grade/base.html' %}
 {% block header_text %}Log in{% endblock %}
 {% block form_action %}{% url 'grade:index' %}{% endblock %}
-{% block link %}<a href="{% url 'grade:signin' %}" class="alert-link">sign in</a>{% endblock %}
+{% block link %}<a href="{% url 'grade:signin' %}" class="btn btn-primary">sign in</a>{% endblock %}

@@ -1,6 +1,10 @@
 <html>
 <head>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Grade Simulator</title>
+    <style type="text/css">
+        body { background: pink !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
 </head>
 <body>
     <center>
@@ -11,10 +15,12 @@
         <input type="text" name="name"><br>
         <p>Password:</p><br>
         <input type="password" name="password" ><br><br>
-        <input type="submit" >
+        <input type="submit" class="btn btn-primary" >
     </form>  
+
     {% block link %}   
     {% endblock %}
+
     </center>
 
 </body>
