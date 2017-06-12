@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>log in</title>
+</head>
+<body>
+    <center>
+    <h1>{% block header_text %}{% endblock %}</h1>
+    <form action="{% block form_action %}{% endblock %}" method="post">
+        {% csrf_token %}
+        <p>Name:</p><br>
+        <input type="text" name="name"><br>
+        <p>Password:</p><br>
+        <input type="password" name="password" ><br><br>
+        <input type="submit" >
+    </form>  
+    {% block link %}   
+    {% endblock %}
+    </center>
+</body>
+</html>

@@ -10,6 +10,9 @@ import csv
 def login(request):
     return render(request,"grade/login.html",'')
 
+def signin(request):
+    return render(request,"grade/signin.html",'')
+
 def index(request):
     user = User.objects.all()
     name = request.POST['name']

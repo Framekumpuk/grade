@@ -1,18 +1,4 @@
-<html>
-<head>
-    <title>log in</title>
-</head>
-<body>
-    <center>
-    <h1>Log In</h1>
-    <form action="{% url 'grade:index'%}" method="post">
-        {% csrf_token %}
-        <p>Name:</p><br>
-        <input type="text" name="name"><br>
-        <p>Password:</p><br>
-        <input type="password" name="password" ><br><br>
-        <input type="submit" >
-    </form>  
-    </center>
-</body>
-</html>
+{% extends 'grade/base.html' %}
+{% block header_text %}Log in{% endblock %}
+{% block form_action %}{% url 'grade:index' %}{% endblock %}
+{% block link %}<a href="{% url 'grade:signin' %}" class="alert-link">sign in</a>{% endblock %}
