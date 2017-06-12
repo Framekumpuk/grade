@@ -13,6 +13,17 @@ def login(request):
 def signin(request):
     return render(request,"grade/signin.html",'')
 
+def keepUser(request):
+    try:
+        name = request.POST['name']
+        password = request.POST['password']
+    except:
+        name = ''
+        password = 0
+    user = User.objects.create_user(username=name, password=password)
+    user.save()
+    return render(request, 'grade/success.html', {'name':name})
+
 def index(request):
     user = User.objects.all()
     name = request.POST['name']
