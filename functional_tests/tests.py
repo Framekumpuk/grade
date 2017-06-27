@@ -83,5 +83,5 @@ class NewVisitorTest(StaticLiveServerTestCase):
         
         inputbox.send_keys(Keys.ENTER)
 
-        self.browser.find_element_by_id('10').click() # see result
+        self.browser.find_element_by_id('10').click() # see result of that subject
         time.sleep(3)
