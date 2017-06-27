@@ -5,7 +5,7 @@ from . import views
 app_name = 'grade'
 urlpatterns = [
     url(r'^$', views.login, name='login'),
-    url(r'^signin$', views.signin, name='signin'),
+    url(r'^signup$', views.signup, name='signup'),
     url(r'keepuser&', views.keepUser, name='keepuser'),
     url(r'^index$', views.index, name='index'),
     url(r'^detail$', views.operand, name='operand' ),

@@ -22,7 +22,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         time.sleep(1)
         self.assertIn('Grade', self.browser.title)
 
-        self.browser.find_element_by_name('signin').click()
+        self.browser.find_element_by_name('signup').click()
 
         # register
         username_box = self.browser.find_element_by_name('name')

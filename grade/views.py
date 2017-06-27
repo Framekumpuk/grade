@@ -10,8 +10,8 @@ import csv
 def login(request):
     return render(request,"grade/login.html")
 
-def signin(request):
-    return render(request,"grade/signin.html")
+def signup(request):
+    return render(request,"grade/signup.html")
 
 def keepUser(request):
     try:
