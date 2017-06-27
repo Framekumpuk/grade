@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head><link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
@@ -12,26 +12,26 @@
 {% csrf_token %}
 
     วิชา:
-    <input id='1' type="text" name="subject">
+    <input id='1' type="text" name="subject" required>
     หน่วยกิต:
-    <input id='4' type="number" name="credit" step="any" min="0"><br><br>
+    <input id='2' type="number" name="credit" step="any" min="0"><br><br>
    คะแนนกลางภาค:
-    <input id='2' type="number" name="score" step="any" min="0">
+    <input id='3' type="number" name="score" step="any" min="0">
     คะแนนเต็ม:
-    <input id='3' type="number" name="full" step="any" min="0"><br><br>
+    <input id='4' type="number" name="full" step="any" min="0"><br><br>
     คะแนนปลายภาค:
-    <input id='9' type="number" name="final_score" step="any" min="0">
+    <input id='5' type="number" name="final_score" step="any" min="0">
     คะแนนเต็ม:
-    <input id='10' type="number" name="final_full" step="any" min="0"><br><br>
+    <input id='6' type="number" name="final_full" step="any" min="0"><br><br>
     ค่าเฉลี่ย:
     <input id='7' type="number" name="mean" step="any" min="0">
     ส่วนเบี่ยงเบนมาตรฐาน:
     <input id='8' type="number" name="sd" step="any" min="0">
 
-    <input id='5' class="btn btn-primary" type="submit">
+    <input id='9' class="btn btn-primary" type="submit">
 
 </form>
-<br><a id='6' href = "{% url 'grade:show' %}">ดูผลการเรียน</a>
+<br><a id='10' href = "{% url 'grade:show' %}">ดูผลการเรียน</a>
 <br><a href = "{% url 'grade:index' %}">กลับสู่หน้าหลัก</a>
 </form>
 </body>

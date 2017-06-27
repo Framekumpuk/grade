@@ -3,73 +3,85 @@ import unittest
 import time
 from selenium.webdriver.common.keys import Keys
 from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
-    def setUp(self):  #2
-        self.browser = webdriver.Firefox()
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.browser.implicitly_wait(3)
 
-    def tearDown(self):  #3
+    def tearDown(self):
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
-        # Edith has heard about a cool new online to-do app. She goes
-        # to check out its homepage
-        self.browser.get(self.live_server_url)
-
-        # She notices the page title and header mention to-do lists
-        self.assertIn('Grade', self.browser.title)  #5
-
-        button = self.browser.find_element_by_id('0')
-
-        button.send_keys(Keys.ENTER)
-
-        time.sleep(1)
         
-        # She is invited to enter a to-do item straight away
-        inputbox = self.browser.find_element_by_id('1')
+        self.browser.get(self.live_server_url)
+        time.sleep(1)
+        self.assertIn('Grade', self.browser.title)
 
-        # She types "Buy peacock feathers" into a text box (Edith's hobby
-        # is tying fly-fishing lures)
+        self.browser.find_element_by_name('signin').click()
+
+        # register
+        username_box = self.browser.find_element_by_name('name')
+        username_box.send_keys('titi')
+        password_box = self.browser.find_element_by_name('password')
+        password_box.send_keys('dontseemypass')
+        password_box.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # back to login
+        self.browser.find_element_by_name('backtologin').click()
+        time.sleep(1)
+
+        # login
+        username_box = self.browser.find_element_by_name('name')
+        username_box.send_keys('titi')
+        password_box = self.browser.find_element_by_name('password')
+        password_box.send_keys('dontseemypass')
+        password_box.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        # enter to program
+        self.browser.find_element_by_name('enter_program').click()
+        time.sleep(1)
+
+        # put data of that subject
+        inputbox = self.browser.find_element_by_id('1')
         inputbox.send_keys('Math')
         time.sleep(1)
-        # She is invited to enter a to-do item straight away
+
         inputbox = self.browser.find_element_by_id('2')
-
-        # She types "Buy peacock feathers" into a text box (Edith's hobby
-        # is tying fly-fishing lures)
-        inputbox.send_keys('58')
-        time.sleep(1)
-        # She is invited to enter a to-do item straight away
-        inputbox = self.browser.find_element_by_id('3')
-
-        # She types "Buy peacock feathers" into a text box (Edith's hobby
-        # is tying fly-fishing lures)
-        inputbox.send_keys('90')
-        time.sleep(1)
-        # She is invited to enter a to-do item straight away
-        inputbox = self.browser.find_element_by_id('4')
-
-        # She types "Buy peacock feathers" into a text box (Edith's hobby
-        # is tying fly-fishing lures)
         inputbox.send_keys('3')
         time.sleep(1)
-
-        # When she hits enter, the page updates, and now the page lists
-        # "1: Buy peacock feathers" as an item in a to-do list table
-        inputbox.send_keys(Keys.ENTER)
-
-         #6
+        
+        inputbox = self.browser.find_element_by_id('3')
+        inputbox.send_keys('58')
         time.sleep(1)
 
-        button = self.browser.find_element_by_id('5')
-        button.send_keys(Keys.ENTER)
+        inputbox = self.browser.find_element_by_id('4')
+        inputbox.send_keys('90')
+        time.sleep(1)
 
-        button = self.browser.find_element_by_id('6')
-        button.send_keys(Keys.ENTER)
-        time.sleep(3)
+        inputbox = self.browser.find_element_by_id('5')
+        inputbox.send_keys('64')
+        time.sleep(1)
+
+        inputbox = self.browser.find_element_by_id('6')
+        inputbox.send_keys('90')
+        time.sleep(1)
+
+        inputbox = self.browser.find_element_by_id('7')
+        inputbox.send_keys('36')
+        time.sleep(1)
+
+        inputbox = self.browser.find_element_by_id('8')
+        inputbox.send_keys('14')
+        time.sleep(1)
         
-        self.fail('Finish the test!')         
+        inputbox.send_keys(Keys.ENTER)
 
-if __name__ == '__main__':  #7
-    unittest.main(warnings='ignore')  #8
+        self.browser.find_element_by_id('10').click() # see result
+        time.sleep(3)

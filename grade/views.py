@@ -8,10 +8,10 @@ import math
 import csv
 
 def login(request):
-    return render(request,"grade/login.html",'')
+    return render(request,"grade/login.html")
 
 def signin(request):
-    return render(request,"grade/signin.html",'')
+    return render(request,"grade/signin.html")
 
 def keepUser(request):
     try:
@@ -32,63 +32,64 @@ def index(request):
     if user is not None:
         # A backend authenticated the credentials
         login(request)
-        return render(request,"grade/index.html",'')
+        return render(request,"grade/index.html")
     else:
         # No backend authenticated the credentials
-        return render(request, 'grade/login.html', '')  
+        return render(request, 'grade/login.html')  
 
 def about(request):
-    return render(request,"grade/about.html",'')
+    return render(request,"grade/about.html")
 
 def operand(request):
-    error_message = 0 
+    error_message = 0
+    subject = ""
+    score = 0
+    full = 1
+    credit = 1
+    mean = 0
+    sd = 0
+    final_score = 0
+    final_full = 1
     try:
         subject = request.POST['subject']
-        score = request.POST['score']
-        full = request.POST['full']
-        credit = request.POST['credit']
-        mean = request.POST['mean']
-        sd = request.POST['sd']
-        final_score = request.POST['final_score']
-        final_full = request.POST['final_full']
+        score = float(request.POST['score'])
+        full = float(request.POST['full'])
+        credit = float(request.POST['credit'])
+        mean = float(request.POST['mean'])
+        sd = float(request.POST['sd'])
+        final_score = float(request.POST['final_score'])
+        final_full = float(request.POST['final_full'])
     except:
         error_message = 1
-        subject = ""
-        score = 0
-        full = 1
-        credit = 1
-        mean = 0
-        sd = 0
-        final_score = 0
-        final_full = 1
-    else:
-            equation = (float(score)+float(final_score))*100/(float(full)+float(final_full))  # make score to 100 percent
-            net = ("%.2f" % round(equation,2))  # make decimal two position
-            if float(net) < 0.0:
-                grade = 'Null'
-            elif float(net) < float(mean)-(1.5*float(sd)):
-                grade = 'F'
-            elif float(net) < float(mean)-float(sd):
-                grade = 'D'
-            elif float(net) < float(mean)-(0.5*float(sd)):
-                grade = 'D+'
-            elif float(net) < float(mean):
-                grade = 'C'
-            elif float(net) < float(mean)+(0.5*float(sd)):
-                grade = 'C+'
-            elif float(net) < float(mean)+(1*float(sd)):
-                grade = 'B'
-            elif float(net) < float(mean)+(1.5*float(sd)):
-                grade = 'B+'
-            elif float(net) >= float(mean)+(1.5*float(sd)):
-                grade = 'A'
-            elif float(net) > 100.0:
-                grade = 'Null'
+        
+    if(subject != ""):
+        equation = (float(score)+float(final_score))*100/(float(full)+float(final_full))  # make score to 100 percent
+        net = ("%.2f" % round(equation,2))  # make decimal two position
+        if float(net) < 0.0:
+            grade = 'Null'
+        elif float(net) < float(mean)-(1.5*float(sd)):
+            grade = 'F'
+        elif float(net) < float(mean)-float(sd):
+            grade = 'D'
+        elif float(net) < float(mean)-(0.5*float(sd)):
+            grade = 'D+'
+        elif float(net) < float(mean):
+            grade = 'C'
+        elif float(net) < float(mean)+(0.5*float(sd)):
+            grade = 'C+'
+        elif float(net) < float(mean)+(1*float(sd)):
+            grade = 'B'
+        elif float(net) < float(mean)+(1.5*float(sd)):
+            grade = 'B+'
+        elif float(net) >= float(mean)+(1.5*float(sd)):
+            grade = 'A'
+        elif float(net) > 100.0:
+            grade = 'Null'
                 
-            information = Grade(subject=subject, score=score, full=full, total=net, grade=grade, credit=credit, mean=mean, sd=sd, final_score=final_score, final_full=final_full)
-            information.save()
+        information = Grade(subject=subject, score=score, full=full, total=net, grade=grade, credit=credit, mean=mean, sd=sd, final_score=final_score, final_full=final_full)
+        information.save()
     # user hits the Back button.
-    return render(request,"grade/detail.html",'')
+    return render(request,"grade/detail.html")
 
 def show(request):
     subject_list = Grade.objects.all()
@@ -99,7 +100,7 @@ def show(request):
     tmp = 0
     sum_credit = 0
     # this loop will pull data from database that calculate grade of that semeter
-    for i in range(0,len(subject_list)):
+    for i in range(len(subject_list)):
         grade_alp.append(str(subject_list[i].grade))
         cal_credit.append(float(subject_list[i].credit))
         sum_credit += float(subject_list[i].credit)
