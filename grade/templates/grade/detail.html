@@ -2,7 +2,7 @@
 <html>
 <head><link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
-   body { background: yellow !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+   body { background: pink !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
 </head>
 <center>
@@ -12,21 +12,21 @@
 {% csrf_token %}
 
     วิชา:
-    <input id='1' type="text" name="subject" required>
+    <input id='1' type="text" name="subject" required><br><br>
     หน่วยกิต:
     <input id='2' type="number" name="credit" step="any" min="0"><br><br>
    คะแนนกลางภาค:
-    <input id='3' type="number" name="score" step="any" min="0">
+    <input id='3' type="number" name="score" step="any" min="0"><br><br>
     คะแนนเต็ม:
     <input id='4' type="number" name="full" step="any" min="0"><br><br>
     คะแนนปลายภาค:
-    <input id='5' type="number" name="final_score" step="any" min="0">
+    <input id='5' type="number" name="final_score" step="any" min="0"><br><br>
     คะแนนเต็ม:
     <input id='6' type="number" name="final_full" step="any" min="0"><br><br>
     ค่าเฉลี่ย:
-    <input id='7' type="number" name="mean" step="any" min="0">
+    <input id='7' type="number" name="mean" step="any" min="0"><br><br>
     ส่วนเบี่ยงเบนมาตรฐาน:
-    <input id='8' type="number" name="sd" step="any" min="0">
+    <input id='8' type="number" name="sd" step="any" min="0"><br><br>
 
     <input id='9' class="btn btn-primary" type="submit">
 
