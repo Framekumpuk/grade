@@ -120,3 +120,4 @@ def show(request):
     print(sum_credit)
     # Calculate balance of paylist.
     return render(request,"grade/show.html",{'subject_list':subject_list, 'result':result})
+>>>>>>> 0e9405c9e1bc24355e1d2d2b7886064eb66404f9
