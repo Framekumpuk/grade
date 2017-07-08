@@ -14,12 +14,12 @@ def signup(request):
     return render(request,"grade/signup.html")
 
 def keepUser(request):
-    try:
-        name = request.POST['name']
-        password = request.POST['password']
-    except:
-        name = ''
-        password = 0
+    name = request.POST['name']
+    password = request.POST['password']    
+
+    if name == '' or len(password) == 0:
+        return render(request, 'grade/error_register.html')
+
     user = User.objects.create_user(username=name, password=password)
     user.save()
     return render(request, 'grade/success.html', {'name':name})
@@ -35,7 +35,7 @@ def index(request):
         return render(request,"grade/index.html")
     else:
         # No backend authenticated the credentials
-        return render(request, 'grade/login.html')  
+        return render(request, 'grade/error_login.html')  
 
 def about(request):
     return render(request,"grade/about.html")
