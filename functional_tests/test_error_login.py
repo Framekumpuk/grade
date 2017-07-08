@@ -40,6 +40,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         time.sleep(1)
 
         # เข้ากลับมาสู่หน้า log in อีกครั้ง และกรอก Username กับ Password ตามที่เขาสมัคร และกดปุ่มส่ง
+        # แต่เขาได้กรอกรหัสผิด โดยตกตัว s ตัวสุดท้ายไป จึงทำให้เกิด error และไปยังหน้าข้อความแจ้งเตือย
         username_box = self.browser.find_element_by_name('name')
         username_box.send_keys('titi')
         password_box = self.browser.find_element_by_name('password')

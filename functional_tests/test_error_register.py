@@ -27,7 +27,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # เมื่อเขาเปิดหน้าเว็บขึ้นมา เขาพบกับคำว่า Grade Simulation และช่องให้ผู้ใช้กรอก Username กับ Password แต่เขายังไม่เคยใช้แอพนี้มาก่อน เขาเลยกดปุ่ม sign up เพื่อสมัครสมาชิก
         self.browser.find_element_by_name('signup').click()
 
-        # เขาได้ใส่ Username ไปว่า titi และ Password คือ dontseemypass จากนั้นเขาจึงกด ส่ง
+        # เขาได้ใส่ Username ไปว่า titi แต่เขาไม่ได้กรอกรหัสผ่าน และกดส่งไป จึงไปยังหน้าข้อความแจ้งเตือน
         username_box = self.browser.find_element_by_name('name')
         username_box.send_keys('titi')
         password_box = self.browser.find_element_by_name('password')
